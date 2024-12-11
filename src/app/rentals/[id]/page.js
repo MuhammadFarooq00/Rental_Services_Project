@@ -3,10 +3,10 @@
 import { motion } from 'framer-motion';
 import { FiCheckCircle } from 'react-icons/fi';
 import { useRouter } from 'next/router';
-import { use, useState } from 'react'; 
+import { use, useState } from 'react';
 import BookingModal from '@/components/BookingModal';
 export default function RentalDetails({ params }) {
-  const {id} = use(params);
+  const { id } = use(params);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleBooking = () => {
@@ -74,7 +74,7 @@ export default function RentalDetails({ params }) {
       'Museum of Modern Art - 0.9 miles',
     ],
   };
-  
+
 
   // const router = useRouter();
 
@@ -86,14 +86,14 @@ export default function RentalDetails({ params }) {
 
   return (
     <section className="py-12 bg-gray-50">
-      <div className="container mx-auto px-4">
-        <h1 className="text-4xl font-bold  mb-8 text-gray-800">
+      <div className="container px-4 mx-auto">
+        <h1 className="mb-8 text-4xl font-bold text-gray-800">
           {rental.title}
         </h1>
 
         {/* Image and Info Section */}
         <motion.div
-          className="flex flex-col  gap-8"
+          className="flex flex-col gap-8"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1 }}
@@ -102,114 +102,114 @@ export default function RentalDetails({ params }) {
             <img
               src={rental.image}
               alt={rental.title}
-              className="w-full h-96 object-cover rounded-lg shadow-md"
+              className="object-cover w-full rounded-lg shadow-md h-96"
             />
           </div>
 
           <div className="flex-1">
-  <div className="bg-white p-6 rounded-lg shadow-md">
-    <h2 className="text-2xl font-semibold mb-4">Details</h2>
-    <p className="text-gray-600 mb-4">{rental.description}</p>
+            <div className="p-6 bg-white rounded-lg shadow-md">
+              <h2 className="mb-4 text-2xl font-semibold">Details</h2>
+              <p className="mb-4 text-gray-600">{rental.description}</p>
 
-    <div className="flex items-center mb-4">
-      <FiCheckCircle className="mr-2 text-green-500" size={20} />
-      <span className="text-lg font-semibold">{rental.availability}</span>
-    </div>
+              <div className="flex items-center mb-4">
+                <FiCheckCircle className="mr-2 text-green-500" size={20} />
+                <span className="text-lg font-semibold">{rental.availability}</span>
+              </div>
 
-    <div className="flex items-center justify-between mb-4">
-      <span className="text-xl font-semibold text-gray-800">
-        Price: ${rental.price}/night
-      </span>
-      <div className="flex items-center text-yellow-500">
-        <span className="mr-1 text-lg font-semibold">{rental.rating}</span>
-        <FiCheckCircle />
-      </div>
-    </div>
+              <div className="flex items-center justify-between mb-4">
+                <span className="text-xl font-semibold text-gray-800">
+                  Price: ${rental.price}/night
+                </span>
+                <div className="flex items-center text-yellow-500">
+                  <span className="mr-1 text-lg font-semibold">{rental.rating}</span>
+                  <FiCheckCircle />
+                </div>
+              </div>
 
-    <div className="flex items-center mb-4">
-      <span className="text-lg font-medium text-gray-600">Location: </span>
-      <span className="text-lg font-semibold text-gray-800">{rental.location}</span>
-    </div>
+              <div className="flex items-center mb-4">
+                <span className="text-lg font-medium text-gray-600">Location: </span>
+                <span className="text-lg font-semibold text-gray-800">{rental.location}</span>
+              </div>
 
-    <div className="mb-4">
-      <h3 className="text-lg font-semibold text-gray-800 mb-2">Amenities:</h3>
-      <ul className="list-disc list-inside text-gray-600">
-        {rental.amenities.map((amenity, index) => (
-          <li key={index}>{amenity}</li>
-        ))}
-      </ul>
-    </div>
+              <div className="mb-4">
+                <h3 className="mb-2 text-lg font-semibold text-gray-800">Amenities:</h3>
+                <ul className="text-gray-600 list-disc list-inside">
+                  {rental.amenities.map((amenity, index) => (
+                    <li key={index}>{amenity}</li>
+                  ))}
+                </ul>
+              </div>
 
-    <div className="mb-4">
-      <h3 className="text-lg font-semibold text-gray-800 mb-2">Reviews:</h3>
-      <ul className="space-y-4">
-        {rental.reviews.map((review, index) => (
-          <li key={index} className="bg-gray-100 p-4 rounded-lg shadow-sm">
-            <p className="text-gray-800 font-semibold">{review.reviewer}</p>
-            <p className="text-yellow-500 font-medium">Rating: {review.rating}/5</p>
-            <p className="text-gray-600">{review.comment}</p>
-          </li>
-        ))}
-      </ul>
-    </div>
+              <div className="mb-4">
+                <h3 className="mb-2 text-lg font-semibold text-gray-800">Reviews:</h3>
+                <ul className="space-y-4">
+                  {rental.reviews.map((review, index) => (
+                    <li key={index} className="p-4 bg-gray-100 rounded-lg shadow-sm">
+                      <p className="font-semibold text-gray-800">{review.reviewer}</p>
+                      <p className="font-medium text-yellow-500">Rating: {review.rating}/5</p>
+                      <p className="text-gray-600">{review.comment}</p>
+                    </li>
+                  ))}
+                </ul>
+              </div>
 
-    <div className="mb-4">
-      <h3 className="text-lg font-semibold text-gray-800 mb-2">Host Information:</h3>
-      <div className="flex items-center">
-        <img
-          src={rental.host.profileImage}
-          alt={rental.host.name}
-          className="w-12 h-12 rounded-full mr-4"
-        />
-        <div>
-          <p className="font-semibold text-gray-800">{rental.host.name}</p>
-          <p className="text-gray-600">{rental.host.contact}</p>
-          <p className="text-gray-600">{rental.host.phone}</p>
-        </div>
-      </div>
-    </div>
+              <div className="mb-4">
+                <h3 className="mb-2 text-lg font-semibold text-gray-800">Host Information:</h3>
+                <div className="flex items-center">
+                  <img
+                    src={rental.host.profileImage}
+                    alt={rental.host.name}
+                    className="w-12 h-12 mr-4 rounded-full"
+                  />
+                  <div>
+                    <p className="font-semibold text-gray-800">{rental.host.name}</p>
+                    <p className="text-gray-600">{rental.host.contact}</p>
+                    <p className="text-gray-600">{rental.host.phone}</p>
+                  </div>
+                </div>
+              </div>
 
-    <div className="mb-4">
-      <h3 className="text-lg font-semibold text-gray-800 mb-2">Nearby Attractions:</h3>
-      <ul className="list-disc list-inside text-gray-600">
-        {rental.nearbyAttractions.map((attraction, index) => (
-          <li key={index}>{attraction}</li>
-        ))}
-      </ul>
-    </div>
+              <div className="mb-4">
+                <h3 className="mb-2 text-lg font-semibold text-gray-800">Nearby Attractions:</h3>
+                <ul className="text-gray-600 list-disc list-inside">
+                  {rental.nearbyAttractions.map((attraction, index) => (
+                    <li key={index}>{attraction}</li>
+                  ))}
+                </ul>
+              </div>
 
-    <motion.button
-      onClick={handleBooking}
-      className="w-full py-3 bg-gradient-to-r from-yellow-400 to-yellow-600 text-white font-semibold rounded-lg hover:from-yellow-500 hover:to-yellow-700 transition duration-300"
-      whileHover={{ scale: 1.05 }}
-      transition={{ duration: 0.3 }}
-    >
-      Book Now
-    </motion.button>
-    <div className="p-6">
-      <BookingModal
-        isOpen={isModalOpen}
-        onClose={handleModalClose}
-        onSubmit={handleBookingSubmit}
-        serviceName="Trackless Train"
-      />
-    </div>
-  </div>
-</div>
+              <motion.button
+                onClick={handleBooking}
+                className="w-full py-3 font-semibold text-white transition duration-300 rounded-lg bg-gradient-to-r from-yellow-400 to-yellow-600 hover:from-yellow-500 hover:to-yellow-700"
+                whileHover={{ scale: 1.05 }}
+                transition={{ duration: 0.3 }}
+              >
+                Book Now
+              </motion.button>
+              <div className="p-6">
+                <BookingModal
+                  isOpen={isModalOpen}
+                  onClose={handleModalClose}
+                  onSubmit={handleBookingSubmit}
+                  serviceName="Trackless Train"
+                />
+              </div>
+            </div>
+          </div>
 
         </motion.div>
 
         {/* Booking Details or Call to Action Section */}
         <div className="mt-12 text-center">
-          <h2 className="text-3xl font-semibold text-gray-800 mb-4">Why Choose This Property?</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          <h2 className="mb-4 text-3xl font-semibold text-gray-800">Why Choose This Property?</h2>
+          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
             <motion.div
               className="p-6 bg-white rounded-lg shadow-md"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 1, delay: 0.2 }}
             >
-              <h3 className="text-xl font-semibold mb-2">Spacious Rooms</h3>
+              <h3 className="mb-2 text-xl font-semibold">Spacious Rooms</h3>
               <p className="text-gray-600">
                 Enjoy large rooms with modern amenities, perfect for relaxation.
               </p>
@@ -221,7 +221,7 @@ export default function RentalDetails({ params }) {
               animate={{ opacity: 1 }}
               transition={{ duration: 1, delay: 0.4 }}
             >
-              <h3 className="text-xl font-semibold mb-2">Prime Location</h3>
+              <h3 className="mb-2 text-xl font-semibold">Prime Location</h3>
               <p className="text-gray-600">
                 Located in a vibrant neighborhood close to shopping, dining, and entertainment.
               </p>
@@ -233,7 +233,7 @@ export default function RentalDetails({ params }) {
               animate={{ opacity: 1 }}
               transition={{ duration: 1, delay: 0.6 }}
             >
-              <h3 className="text-xl font-semibold mb-2">Luxury Amenities</h3>
+              <h3 className="mb-2 text-xl font-semibold">Luxury Amenities</h3>
               <p className="text-gray-600">
                 Fully equipped with luxury amenities to make your stay memorable.
               </p>
